@@ -9,8 +9,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.eclipse.microprofile.metrics.annotation.Counted;
-
 /**
  * @author Ken Finnigan
  */
@@ -31,10 +29,6 @@ public class CuteNameResource {
     @GET
     @Path("/name")
     @Produces(MediaType.TEXT_PLAIN)
-    @Counted(name = "cuteCount",
-            absolute = true,
-            description = "# calls to CuteService",
-            monotonic = true)
     public String getName() {
         int random1 = (int) Math.floor(Math.random() * ADJECTIVES.length);
         int random2 = (int) Math.ceil(Math.random() * nounLength);
