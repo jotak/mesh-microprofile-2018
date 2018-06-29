@@ -16,6 +16,10 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>jaeger</artifactId>
+    </dependency>
+    <dependency>
       <groupId>io.opentracing.contrib</groupId>
       <artifactId>opentracing-jaxrs2</artifactId>
       <version>0.1.4</version>

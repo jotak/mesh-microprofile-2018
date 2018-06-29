@@ -1,0 +1,39 @@
+apiVersion: config.istio.io/v1alpha2
+kind: DestinationPolicy
+metadata:
+  name: name-service-destination
+spec:
+  destination:
+    name: name-service
+    labels:
+      app: name-service
+  circuitBreaker:
+    simpleCb:
+      maxConnections: 1
+      httpMaxPendingRequests: 1
+      sleepWindow: 5s
+      httpDetectionInterval: 5s
+      httpMaxEjectionPercent: 100
+      httpConsecutiveErrors: 1
+      httpMaxRequestsPerConnection: 1
+
+# NEW FORMAT
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: name-service
+spec:
+  host: name-service
+  trafficPolicy:
+    connectionPool:
+      tcp:
+        maxConnections: 1
+      http:
+        http1MaxPendingRequests: 1
+        maxRequestsPerConnection: 1
+    outlierDetection:
+      http:
+        consecutiveErrors: 1
+        interval: 1s
+        baseEjectionTime: 3m
+        maxEjectionPercent: 100
