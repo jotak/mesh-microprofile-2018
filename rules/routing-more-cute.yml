@@ -1,34 +1,34 @@
-apiVersion: config.istio.io/v1alpha2
-kind: RouteRule
-metadata:
-  name: all-cute-names
-spec:
-  destination:
+---
+apiVersion: v1
+kind: List
+items:
+- apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
     name: name-service
-  precedence: 1
-  route:
-  - labels:
-      version: boring
-    weight: 10
-  - labels:
-      version: cute
-    weight: 90
-
-# NEW FORMAT
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: name-service
-spec:
-  hosts:
-    - name-service
-  http:
-  - route:
-    - destination:
-        host: name-service
-        subset: cute
-      weight: 90
-    - destination:
-        host: name-service
-        subset: boring
-      weight: 10
+  spec:
+    hosts:
+      - name-service
+    http:
+    - route:
+      - destination:
+          host: name-service
+          subset: cute
+        weight: 90
+      - destination:
+          host: name-service
+          subset: boring
+        weight: 10
+- apiVersion: networking.istio.io/v1alpha3
+  kind: DestinationRule
+  metadata:
+    name: name-service
+  spec:
+    host: name-service
+    subsets:
+    - name: boring
+      labels:
+        version: boring
+    - name: cute
+      labels:
+        version: cute

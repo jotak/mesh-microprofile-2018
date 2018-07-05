@@ -6,8 +6,3 @@ For each module:
 * mvn clean package
 * mvn fabric8:build -Popenshift
 * oc apply -f .openshift/application.yml
-
-
-  register(ClientTracingFeature.class)
-
-  .property(TracingProperties.CHILD_OF, GlobalTracer.get().activeSpan().context())
