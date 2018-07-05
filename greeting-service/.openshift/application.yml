@@ -115,6 +115,8 @@ items:
     http:
     - match:
       - uri:
+          prefix: /greeting/
+      - uri:
           prefix: /greeting
       rewrite:
         uri: /
@@ -141,7 +143,13 @@ items:
     name: name-service
   spec:
     host: name-service
+    trafficPolicy:
+      tls:
+        mode: ISTIO_MUTUAL
     subsets:
     - name: boring
       labels:
         version: boring
+    - name: cute
+      labels:
+        version: cute
