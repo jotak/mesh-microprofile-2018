@@ -4,14 +4,14 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.thorntail</groupId>
-  <artifactId>jdkio-root</artifactId>
+  <artifactId>servicemesh-microprofile</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>JDK.io 2018 - Root</name>
+  <name>ServiceMesh and MicroProfile 2018 - Root</name>
 
   <properties>
-    <version.wildfly-swarm>2018.5.0</version.wildfly-swarm>
+    <version.thorntail>2.1.0.Final</version.thorntail>
     <version.h2>1.4.187</version.h2>
   </properties>
 
@@ -24,9 +24,9 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.wildfly.swarm</groupId>
+        <groupId>io.thorntail</groupId>
         <artifactId>bom</artifactId>
-        <version>${version.wildfly-swarm}</version>
+        <version>${version.thorntail}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -40,7 +40,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.wildfly.swarm</groupId>
+      <groupId>io.thorntail</groupId>
       <artifactId>jaxrs</artifactId>
     </dependency>
   </dependencies>
@@ -49,9 +49,9 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.wildfly.swarm</groupId>
-          <artifactId>wildfly-swarm-plugin</artifactId>
-          <version>${version.wildfly-swarm}</version>
+          <groupId>io.thorntail</groupId>
+          <artifactId>thorntail-maven-plugin</artifactId>
+          <version>${version.thorntail}</version>
           <configuration>
             <properties>
               <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
@@ -95,7 +95,7 @@
           <plugin>
             <groupId>io.fabric8</groupId>
             <artifactId>fabric8-maven-plugin</artifactId>
-            <version>3.5.39</version>
+            <version>3.5.41</version>
             <executions>
               <execution>
                 <goals>
@@ -107,14 +107,17 @@
             <configuration>
               <generator>
                 <includes>
-                  <include>wildfly-swarm</include>
+                  <include>thorntail-v2</include>
                 </includes>
+                <excludes>
+                  <exclude>webapp</exclude>
+                </excludes>
               </generator>
               <enricher>
                 <config>
-                  <wildfly-swarm-health-check>
-                    <path>/</path>
-                  </wildfly-swarm-health-check>
+                  <thorntail-v2-health-check>
+                    <path>/health</path>
+                  </thorntail-v2-health-check>
                 </config>
               </enricher>
             </configuration>

@@ -1,4 +1,4 @@
-package io.thorntail.jdkio;
+package io.thorntail.servicemesh;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package io.thorntail.jdkio;
+package io.thorntail.servicemesh;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

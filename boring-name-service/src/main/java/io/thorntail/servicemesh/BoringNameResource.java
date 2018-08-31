@@ -1,4 +1,4 @@
-package io.thorntail.jdkio;
+package io.thorntail.servicemesh;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -15,7 +15,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 public class BoringNameResource {
 
     @Inject
-    @ConfigProperty(name = "default_name", defaultValue = "John")
+    @ConfigProperty(name = "default.name", defaultValue = "John")
     private String defaultName;
 
     @GET

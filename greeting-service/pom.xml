@@ -5,39 +5,31 @@
 
   <parent>
     <groupId>io.thorntail</groupId>
-    <artifactId>jdkio-root</artifactId>
+    <artifactId>servicemesh-microprofile</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>jdkio-greeting</artifactId>
+  <artifactId>greeting</artifactId>
   <packaging>war</packaging>
 
-  <name>JDK.io - Greeting Service</name>
+  <name>ServiceMesh and MicroProfile - Greeting Service</name>
 
   <dependencies>
     <dependency>
-      <groupId>org.wildfly.swarm</groupId>
+      <groupId>io.thorntail</groupId>
+      <artifactId>microprofile</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.thorntail</groupId>
       <artifactId>jaeger</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.opentracing.contrib</groupId>
-      <artifactId>opentracing-jaxrs2</artifactId>
-      <version>0.1.4</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.resteasy</groupId>
-      <artifactId>resteasy-client</artifactId>
-      <version>3.0.24.Final</version>
-      <scope>provided</scope>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
       <plugin>
-        <groupId>org.wildfly.swarm</groupId>
-        <artifactId>wildfly-swarm-plugin</artifactId>
+        <groupId>io.thorntail</groupId>
+        <artifactId>thorntail-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

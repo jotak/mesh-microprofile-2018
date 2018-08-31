@@ -5,27 +5,31 @@
 
   <parent>
     <groupId>io.thorntail</groupId>
-    <artifactId>jdkio-root</artifactId>
+    <artifactId>servicemesh-microprofile</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>jdkio-boring-name</artifactId>
+  <artifactId>boring-name</artifactId>
   <packaging>war</packaging>
 
-  <name>JDK.io - Boring Name Service</name>
+  <name>ServiceMesh and MicroProfile - Boring Name Service</name>
 
   <dependencies>
     <dependency>
-      <groupId>org.wildfly.swarm</groupId>
+      <groupId>io.thorntail</groupId>
       <artifactId>microprofile-health</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.thorntail</groupId>
+      <artifactId>microprofile-config</artifactId>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
       <plugin>
-        <groupId>org.wildfly.swarm</groupId>
-        <artifactId>wildfly-swarm-plugin</artifactId>
+        <groupId>io.thorntail</groupId>
+        <artifactId>thorntail-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

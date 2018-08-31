@@ -6,3 +6,10 @@ For each module:
 * mvn clean package
 * mvn fabric8:build -Popenshift
 * oc apply -f .openshift/application.yml
+
+  echo http://$(oc get route istio-ingressgateway -o jsonpath='{.spec.host}{"\n"}' -n istio-system)/greeting
+
+oc get routes -n istio-system
+
+oc apply -f rules/destination-rule.yml
+

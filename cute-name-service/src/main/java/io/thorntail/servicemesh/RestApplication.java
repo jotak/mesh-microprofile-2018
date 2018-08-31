@@ -1,10 +1,8 @@
-package io.thorntail.jdkio;
+package io.thorntail.servicemesh;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 @ApplicationPath("/api")
 public class RestApplication extends Application {
-
 }
-

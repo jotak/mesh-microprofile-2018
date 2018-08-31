@@ -5,23 +5,27 @@
 
   <parent>
     <groupId>io.thorntail</groupId>
-    <artifactId>jdkio-root</artifactId>
+    <artifactId>servicemesh-microprofile</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>jdkio-cute-name</artifactId>
+  <artifactId>cute-name</artifactId>
   <packaging>war</packaging>
 
-  <name>JDK.io - Cute Name Service</name>
+  <name>ServiceMesh and MicroProfile - Cute Name Service</name>
 
   <dependencies>
     <dependency>
-      <groupId>org.wildfly.swarm</groupId>
+      <groupId>io.thorntail</groupId>
       <artifactId>jpa</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.wildfly.swarm</groupId>
+      <groupId>io.thorntail</groupId>
       <artifactId>cdi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.thorntail</groupId>
+      <artifactId>microprofile-health</artifactId>
     </dependency>
 
     <dependency>
@@ -33,8 +37,8 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.wildfly.swarm</groupId>
-        <artifactId>wildfly-swarm-plugin</artifactId>
+        <groupId>io.thorntail</groupId>
+        <artifactId>thorntail-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

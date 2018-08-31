@@ -28,7 +28,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: jdkio-greeting:latest
+          image: greeting:latest
           imagePullPolicy: Always
           livenessProbe:
             exec:
@@ -36,7 +36,7 @@ items:
               - curl
               - http://localhost:8080/health
             initialDelaySeconds: 100
-          name: wildfly-swarm
+          name: thorntail
           ports:
           - containerPort: 8080
             name: http
@@ -60,10 +60,10 @@ items:
     - imageChangeParams:
         automatic: true
         containerNames:
-        - wildfly-swarm
+        - thorntail
         from:
           kind: ImageStreamTag
-          name: jdkio-greeting:latest
+          name: greeting:latest
       type: ImageChange
 - apiVersion: v1
   kind: Service
@@ -92,7 +92,7 @@ items:
 - apiVersion: networking.istio.io/v1alpha3
   kind: Gateway
   metadata:
-    name: jdkio-greeting-gateway
+    name: servicemesh-greeting-gateway
   spec:
     selector:
       istio: ingressgateway # use istio default controller
@@ -106,12 +106,12 @@ items:
 - apiVersion: networking.istio.io/v1alpha3
   kind: VirtualService
   metadata:
-    name: jdkio-greeting
+    name: servicemesh-greeting
   spec:
     hosts:
     - "*"
     gateways:
-    - jdkio-greeting-gateway
+    - servicemesh-greeting-gateway
     http:
     - match:
       - uri:
@@ -137,19 +137,3 @@ items:
       - destination:
           host: name-service
           subset: boring
-- apiVersion: networking.istio.io/v1alpha3
-  kind: DestinationRule
-  metadata:
-    name: name-service
-  spec:
-    host: name-service
-    trafficPolicy:
-      tls:
-        mode: ISTIO_MUTUAL
-    subsets:
-    - name: boring
-      labels:
-        version: boring
-    - name: cute
-      labels:
-        version: cute
