@@ -9,7 +9,8 @@ For each module:
 
   echo http://$(oc get route istio-ingressgateway -o jsonpath='{.spec.host}{"\n"}' -n istio-system)/greeting
 
+oc apply -f rules/destination-rule.yml
+
 oc get routes -n istio-system
 
-oc apply -f rules/destination-rule.yml
 

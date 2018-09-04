@@ -2,20 +2,28 @@ package io.thorntail.servicemesh;
 
 import java.net.URL;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import io.opentracing.Tracer;
+import io.smallrye.opentracing.SmallRyeClientTracingFeature;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 
 /**
  * @author Ken Finnigan
  */
 @Path("/")
+@ApplicationScoped
 public class GreetingResource {
 
     private static final String NAME_SERVICE_URL = "http://name-service:8080";
+
+    @Inject
+    Tracer tracer;
 
     @GET
     @Path("/greeting")
@@ -24,6 +32,7 @@ public class GreetingResource {
         NameService nameService =
                 RestClientBuilder.newBuilder()
                         .baseUrl(new URL(NAME_SERVICE_URL))
+                        .register(new SmallRyeClientTracingFeature(tracer))
                         .build(NameService.class);
 
         String name = nameService.getName();
