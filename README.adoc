@@ -1,5 +1,5 @@
 
-  istiooc cluster up --istio --istio-auth --istio-kiali-username=admin --istio-kiali-password=admin
+  istiooc cluster up --istio --istio-kiali-username=admin --istio-kiali-password=admin
 
 For each module:
 
@@ -13,4 +13,4 @@ oc apply -f rules/destination-rule.yml
 
 oc get routes -n istio-system
 
-
+oc apply -f rules/fault-injection.yml

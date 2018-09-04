@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: name-service
+spec:
+  hosts:
+  - name-service
+  http:
+  - fault:
+      abort:
+        percent: 25
+        httpStatus: 400
+    route:
+    - destination:
+        host: name-service

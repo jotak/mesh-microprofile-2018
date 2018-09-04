@@ -2,7 +2,7 @@ package io.thorntail.servicemesh;
 
 import java.net.URL;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,7 +17,7 @@ import org.eclipse.microprofile.rest.client.RestClientBuilder;
  * @author Ken Finnigan
  */
 @Path("/")
-@ApplicationScoped
+@RequestScoped
 public class GreetingResource {
 
     private static final String NAME_SERVICE_URL = "http://name-service:8080";

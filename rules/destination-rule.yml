@@ -4,9 +4,6 @@ metadata:
   name: name-service
 spec:
   host: name-service
-  trafficPolicy:
-    tls:
-      mode: ISTIO_MUTUAL
   subsets:
   - name: boring
     labels:
