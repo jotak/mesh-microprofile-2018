@@ -1,3 +1,10 @@
-#default:
-#  name: "Steve"
-dummy: "value"
+default:
+  name: "Steve"
+
+swarm:
+  jaeger:
+    service-name: 'boring'
+    sampler-type: 'const'
+    sampler-parameter: 1
+    enable-b3-header-propagation: true
+    remote-reporter-http-endpoint: 'http://jaeger-collector.istio-system:14268/api/traces'
