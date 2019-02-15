@@ -1,10 +1,17 @@
 ```
-oc project myproject
+oc new-project thorntail
+oc adm policy add-scc-to-user privileged -z default
 mvn clean package
 mvn fabric8:build -Popenshift
-oc apply -f <(istioctl kube-inject greeting-service/.openshift/application.yml)
-oc apply -f <(istioctl kube-inject boring-name-service/.openshift/application.yml)
-oc apply -f <(istioctl kube-inject cute-name-service/.openshift/application.yml)
+oc apply -f <(istioctl kube-inject -f greeting-service/.openshift/application.yml)
+oc apply -f <(istioctl kube-inject -f boring-name-service/.openshift/application.yml)
+oc apply -f <(istioctl kube-inject -f cute-name-service/.openshift/application.yml)
 oc expose svc/greeting-service
 ```
 
+To allow prometheus scrape on http (non secure) :
+
+```
+oc apply -f prometheus-config-map.yml -n istio-system
+oc delete pods -l app=prometheus -n istio-system
+```

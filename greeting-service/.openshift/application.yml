@@ -22,6 +22,7 @@ items:
           sidecar.istio.io/inject: "true"
           prometheus.io/scrape: "true"
           prometheus.io/port: "8080"
+          prometheus.io/scheme: "http"
           kiali.io/runtimes: "thorntail"
         labels:
           app: greeting-service
@@ -35,12 +36,6 @@ items:
                 fieldPath: metadata.namespace
           image: greeting:latest
           imagePullPolicy: Always
-          livenessProbe:
-            exec:
-              command:
-              - curl
-              - http://localhost:8080/health
-            initialDelaySeconds: 100
           name: thorntail
           ports:
           - containerPort: 8080
@@ -52,12 +47,6 @@ items:
           - containerPort: 8778
             name: jolokia
             protocol: TCP
-          readinessProbe:
-            exec:
-              command:
-              - curl
-              - http://localhost:8080/health
-            initialDelaySeconds: 10
           securityContext:
             privileged: false
     triggers:
