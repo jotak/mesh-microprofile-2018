@@ -11,7 +11,7 @@
   <name>ServiceMesh and MicroProfile 2018 - Root</name>
 
   <properties>
-    <version.thorntail>2.1.0.Final</version.thorntail>
+    <version.thorntail>2.3.0.Final</version.thorntail>
     <version.h2>1.4.187</version.h2>
   </properties>
 
